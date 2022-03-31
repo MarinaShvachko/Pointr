@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class BlogPage {
     private final String PAGE_URL = "https://www.pointr.tech/blog";
-    private static String PATH_TO_FILE_WITH_RESULTS = "C:\\Users\\Xiaomi\\Desktop\\Test.txt";
+    private static String PATH_TO_FILE_WITH_RESULTS = "src/Results.txt";
     WebDriver driver;
     private BlogPageElements blogPageElement;
     private HashMap<String, Integer> wordsInArticleAndItsCount = new HashMap<>();

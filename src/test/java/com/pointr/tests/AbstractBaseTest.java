@@ -14,8 +14,8 @@ import java.util.concurrent.TimeUnit;
 public class AbstractBaseTest {
     WebDriver driver;
     private AppLib app;
-    private static final String PATH_TO_CHROME_DRIVER = "C:/Users/Xiaomi/Documents/projects/webdrivers/chromedriver.exe";
-    private static final String PATH_TO_FIREFOX_DRIVER = "C:/Users/Xiaomi/Documents/projects/webdrivers/geckodriver.exe";
+    private static final String PATH_TO_CHROME_DRIVER = "src/main/java/resources/chromedriver.exe";
+    private static final String PATH_TO_FIREFOX_DRIVER = "src/main/java/resources/geckodriver.exe";
     private static final String USE_CHROME_BROWSER = "Chrome";
     private static final String USE_FIREFOX_BROWSER = "Firefox";
 
@@ -39,6 +39,7 @@ public class AbstractBaseTest {
         driver.close();
     }
 
+    //TODO Изменить структуру фреймворка
     public AppLib App() {
         return app;
     }
