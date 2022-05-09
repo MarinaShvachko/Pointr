@@ -21,27 +21,23 @@ public class BlogPostsPage extends BasePage {
     }
 
     //TODO to find an error because I can not initialize @FindBy
-//    @FindBy(xpath = "//div//a[contains(text(),'Accept')]")
-//    public WebElement buttonAccept;
+    public WebElement buttonAcceptCookie = driver.findElement(By.id("hs-eu-confirmation-button"));
 
-    //@FindBy(className = "post-body")
-    public WebElement textOnThePage;
+    private WebElement textOnThePage;
     private HashMap<String, Integer> wordsInArticleAndItsCount = new HashMap<>();
     private Map<String, Integer> sortedMap;
-    private static String PATH_TO_FILE_WITH_RESULTS = "src/Results.txt";
+    private List<WebElement> linksToArticle;
     private File file = new File(PATH_TO_FILE_WITH_RESULTS);
-    public List<WebElement> linksToArticle;
+    private static String PATH_TO_FILE_WITH_RESULTS = "src/Results.txt";
+    private static final String PATH_TO_ARTICLES = "//article[@class='blog-posts']//a[contains(text(), 'Read more')]";
 
-    //TODO move xpath out
     @Step("Close cookie window")
     public void closeAcceptCookieWindow() {
-        WebElement el = (new WebDriverWait(driver, Duration.ofSeconds(10))).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div//a[contains(text(),'Accept')]")));
-        el.click();
+        buttonAcceptCookie.click();
     }
 
-    //TODO move xpath out
-    public void goToArticle(int numOfArticle) throws InterruptedException {
-        linksToArticle = driver.findElements(By.xpath("//div//section[@class='blog-items']//article//a[contains(text(), 'Read more')]"));
+    public void goToArticle(int numOfArticle){
+        linksToArticle = driver.findElements(By.xpath(PATH_TO_ARTICLES));
         WebElement article = (new WebDriverWait(driver, Duration.ofSeconds(10))).until(ExpectedConditions.elementToBeClickable(linksToArticle.get(numOfArticle)));
         article.click();
     }
@@ -50,9 +46,8 @@ public class BlogPostsPage extends BasePage {
         driver.navigate().back();
     }
 
-    //TODO set uo allure report
-    @Step("Count words")
-    public HashMap<String, Integer> countWordsInArticle(int numOfArticlesToGetWordsForCount) throws InterruptedException {
+    @Step("Count words in articles")
+    public HashMap<String, Integer> countWordsInArticle(int numOfArticlesToGetWordsForCount){
         for (int article = 0; article < numOfArticlesToGetWordsForCount; article++) {
             goToArticle(article);
             textOnThePage = driver.findElement(By.className("post-body"));
@@ -86,27 +81,24 @@ public class BlogPostsPage extends BasePage {
         return sortedMap;
     }
 
-    public Map<String, Integer> getAllWordsFromArticlesAndCountThem(int numOfArticles) throws InterruptedException {
+    public Map<String, Integer> getAllWordsFromArticlesAndCountThem(int numOfArticles) {
         return sortValuesInMapDesc(countWordsInArticle(numOfArticles));
     }
 
-    public void writeDataToFile(Map<String, Integer> sortedMap) throws IOException {
+    public void writeDataToFile(Map<String, Integer> sortedMap) {
         Set<Map.Entry<String, Integer>> entrySet = sortedMap.entrySet();
         ArrayList<Map.Entry<String, Integer>> listOfEntry = new ArrayList<>(entrySet);
 
-        file.createNewFile();
-        FileWriter writer = new FileWriter(file);
-
-        for (int x = 0; x < 5; x++) {
-            writer.write((listOfEntry.get(x)) + "\n");
+        try {
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
+            for (int x = 0; x < 5; x++) {
+                writer.write((listOfEntry.get(x)) + "\n");
+            }
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        writer.flush();
-        writer.close();
-    }
-
-    //TODO when a page with article is opened to get all words create an object on article page
-    public ArticlePage goToArticle() {
-        //click()
-        return new ArticlePage(driver);
     }
 }

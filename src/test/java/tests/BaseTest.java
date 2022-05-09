@@ -29,17 +29,12 @@ public class BaseTest {
             driver = new FirefoxDriver();
         }
         driver.manage().window().maximize();
-        //driver.get(URL);
-        //blogPostsPage = new BlogPostsPage(driver);
-    }
-
-    public void goToBlogs() {
         driver.get(URL);
         blogPostsPage = new BlogPostsPage(driver);
     }
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
+    public void tearDown() {
         driver.quit();
     }
 }
