@@ -13,13 +13,42 @@ At Pointr, we produce maps for large sites (eg. hospital campus) which typically
 1. Site API
    * API to import a new Site
    * API to retrieve an existing Site
-   * API to delete a Site 
+   * API to delete a Site
 2. Building API
    * API to import Buildings
    * API to retrieve an existing Building
-   * API to delete a Building 
+   * API to delete a Building
 3. Levels API
    * API to import single or multiple levels
+   
+
+**Set up a project in Windows** 
+
+I use JSON Server for creating an example of a database for sending request and receiving responses. This is a file "dataBase.json" at the root of the project
+There are 3 tables created in advance and filled with examples of sites, buildings, levels.
+
+
+To use my code you need:
+1. To install Node.js:
+* Go to https://nodejs.org/en/download/ and install it
+* Copy the path to a folder where node.exe is installed (the end of a path should look like ".....Program Files\nodejs\\")
+* Open System properties, Advanced tab (for setting environment paths)
+* Then in System variables click Edit
+* Find a variable Path, add a full path to Node that you copied in step №2
+* Save changes
+* To check if it is installed successfully open a terminal and type npm, you should see no errors
+2. Install JSON server, put these commands in terminal: (all commands below are shown here https://github.com/typicode/json-server)
+* npm install -g json-server
+3. To start JSON server:
+* In terminal go to a field where a file "db.json" is (it's at the root of the project) 
+* In terminal type:  json-server --watch db.json
+* Now if you go in browser to http://localhost:3000/Buildings, you'll get a list of all buildings
+
+
+**Start the test**
+* Open RunApiTests class
+* Chose necessary methods with a @Test mark and run them
+* 
 
 **Question # 2 - UI**
 

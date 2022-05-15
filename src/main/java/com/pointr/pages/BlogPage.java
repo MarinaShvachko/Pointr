@@ -43,7 +43,7 @@ public class BlogPage {
         for (int article = 0; article < numOfArticlesToGetWordsForCount; article++) {
             goToArticle(article);
             String articleText = blogPageElement.textOnThePage.getText();
-            String articleTextLowerCaseWithoutSymbols = articleText.toLowerCase(Locale.ROOT).replaceAll("[^a-zA-ZА-Яа-я0-9\\s]", "");
+            String articleTextLowerCaseWithoutSymbols = articleText.toLowerCase(Locale.ROOT).replaceAll("[^a-zA-Z-0-9\\s]", "");
             String[] words = articleTextLowerCaseWithoutSymbols.split(" ");
 
             for (String word : words) {
