@@ -1,0 +1,53 @@
+{
+  "Sites": [
+    {
+      "id": 1,
+      "title": "hospital"
+    },
+    {
+      "id": "2",
+      "title": "university",
+      "url": "http://localhost:3000/Sites",
+      "buildingsOnTheSite": null
+    },
+    {
+      "id": "3",
+      "title": "university",
+      "buildingsOnTheSite": null
+    },
+    {
+      "id": "4",
+      "title": "trtrtr",
+      "buildingsOnTheSite": null
+    },
+    {
+      "id": "87",
+      "title": "Living space",
+      "buildingsOnTheSite": [
+        {
+          "id": "77",
+          "name": "School",
+          "phone": "678",
+          "address": "School str. 1"
+        },
+        {
+          "id": "78",
+          "name": "House",
+          "phone": "111",
+          "address": "School str. 2"
+        }
+      ]
+    }
+  ],
+  "Buildings": [
+    {
+      "id": 1,
+      "name": "new new value 2",
+      "phone": "0009",
+      "address": "Varketili str, 76"
+    }
+  ],
+  "Levels": {
+    "levelName": "roads"
+  }
+}

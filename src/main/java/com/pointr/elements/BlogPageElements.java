@@ -10,7 +10,7 @@ import java.util.List;
 public class BlogPageElements {
     WebDriver driver;
 
-    @FindBy(xpath = "//section/article//a[contains(text(),'Read more...')]")
+    @FindBy(xpath = "//section/article//a[contains(text(),'Read more')]")
     public List<WebElement> linksToArticle;
 
     @FindBy(xpath = "//div//a[contains(text(),'Accept')]")
